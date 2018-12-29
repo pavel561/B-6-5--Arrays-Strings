@@ -93,7 +93,7 @@ namespace Base.Lesson_6
 		}
 
 		
-		public static void OutTable(int[,] table)			//Дописать!!!!!
+		public static void OutTable(int[,] table)			
 		{
 			for (int i = 0; i < table.GetUpperBound(0)+1; i++)
 			{
