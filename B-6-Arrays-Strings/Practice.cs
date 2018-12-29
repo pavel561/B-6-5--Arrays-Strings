@@ -134,5 +134,157 @@ namespace Base.Lesson_6
 			}
 			Console.ReadLine();
 		}
+		static public void B6_P4_6_Pyatnashki()
+		{
+			//=========================================================
+			Console.WriteLine("");
+			Console.WriteLine("====================================");
+			Console.WriteLine("B6_P4_6_Pyatnashki");
+			Console.WriteLine("Игра \"Пятнашки\"");
+			Console.WriteLine("====================================");
+			Console.WriteLine("");
+			//=========================================================
+
+			Console.WriteLine("Для управления используйте клавиши");
+			Console.WriteLine("W - Вверх, A - Влево, S - Вниз, D - Вправо");
+			Console.WriteLine("Также, можно использовать стрелки ))");
+
+			Console.WriteLine();
+			Console.WriteLine("Для выхода из игры используйте клавишу \"Q\"");
+			Console.WriteLine();
+			Console.WriteLine("Для начала игры нажмите любую клавишу...");
+			Console.ReadKey();
+			Console.Clear();
+
+			bool run = true;			//Флаг для остановки игры
+			const int TABLE_HEIGHT = 4;	//Высота таблицы
+			const int TABLE_WIDTH = 4;	//Ширина таблицы
+			const int cellCount = TABLE_HEIGHT * TABLE_WIDTH;	//Количество ячеек таблицы
+			int[,] table = new int[TABLE_WIDTH, TABLE_HEIGHT];	//Сама таблица
+			Random rnd = new Random();	//Экземпляр рандома
+			int nullPosition_x = 0;	//Текущее положение нуля в матрице
+			int nullPosition_y = 0; //Текущее положение нуля в матрице
+
+			//Создаем массив с числами от 1 до 15
+			//а затем его перемешиваем
+			int[] numbers = new int[cellCount - 1];	//Массив с числами
+			for(int i = 0; i < cellCount-1; i++)	//Заполняем его
+			{
+				numbers[i] = i + 1;
+			}
+			//Этот кусок кода честно подсмотрел в интернете
+			//Он перетусовывает массив чисел случайным образом
+			int count = numbers.Length;
+			while (count > 1)
+			{
+				count--;
+				int k = rnd.Next(count + 1);
+				var value = numbers[k];
+				numbers[k] = numbers[count];
+				numbers[count] = value;
+			}
+
+			//Заполняем таблицу числами из подготовленного массива
+			int numberPosition = 0;
+			for (int y = 0; y < TABLE_HEIGHT; y++)
+			{
+				for (int x = 0; x < TABLE_WIDTH; x++)
+				{
+					if(x==(TABLE_HEIGHT-1) && y==(TABLE_WIDTH-1))
+					{
+						//В последнюю ячейку записываем Нуль.
+						table[x, y] = 0;
+						nullPosition_x = x;
+						nullPosition_y = y;
+					}
+					else
+					{
+						//В остальные ячейки пишем числа из массива
+						//table[x, y] = rnd.Next(1, cellCount);	//Рандом генерил одинаковые числа, пришлось от него отказаться =(
+						table[x, y] = numbers[numberPosition];
+						numberPosition++;
+					}
+				}	
+			}
+			//Основной цикл, в котором  вертится вся логика программы
+			while(run)
+			{
+				//Выводим таблицу в консоль
+				for (int y = 0; y < TABLE_HEIGHT; y++)
+				{
+					for (int x = 0; x < TABLE_WIDTH; x++)
+					{
+						Console.Write($"{table[x, y],5}");
+					}
+					Console.WriteLine();
+				}
+				//Ждем нажатия кнопки и выполняем перемещения
+				var pressedKey = Console.ReadKey(true).Key;
+				switch (pressedKey)
+				{
+					case ConsoleKey.UpArrow:
+					case ConsoleKey.W:
+						{
+							if (nullPosition_y > 0)
+							{
+								int temp = table[nullPosition_x, nullPosition_y - 1];
+								table[nullPosition_x, nullPosition_y - 1] = table[nullPosition_x, nullPosition_y];
+								table[nullPosition_x, nullPosition_y] = temp;
+								nullPosition_y--;
+							}
+							break;
+						}
+					case ConsoleKey.LeftArrow:
+					case ConsoleKey.A:
+						{
+							if(nullPosition_x > 0)
+							{
+								int temp = table[nullPosition_x - 1, nullPosition_y];
+								table[nullPosition_x - 1, nullPosition_y] = table[nullPosition_x, nullPosition_y];
+								table[nullPosition_x, nullPosition_y] = temp;
+								nullPosition_x--;
+							}
+							break;
+						}
+					case ConsoleKey.DownArrow:
+					case ConsoleKey.S:
+						{
+							if (nullPosition_y < TABLE_HEIGHT - 1)
+							{
+								int temp = table[nullPosition_x, nullPosition_y + 1];
+								table[nullPosition_x, nullPosition_y + 1] = table[nullPosition_x, nullPosition_y];
+								table[nullPosition_x, nullPosition_y] = temp;
+								nullPosition_y++;
+							}
+							break;
+						}
+					case ConsoleKey.RightArrow:
+					case ConsoleKey.D:
+						{
+							if (nullPosition_x < TABLE_WIDTH-1)
+							{
+								int temp = table[nullPosition_x + 1, nullPosition_y];
+								table[nullPosition_x + 1, nullPosition_y] = table[nullPosition_x, nullPosition_y];
+								table[nullPosition_x, nullPosition_y] = temp;
+								nullPosition_x++;
+							}
+							break;
+						}
+					case ConsoleKey.Q:
+						{
+							run = false;
+							Console.WriteLine("Выход из игры.");
+							break;
+						}
+					default:
+						{
+							break;
+						}
+				}
+				//Очищаем экран
+				Console.Clear();
+			}
+			Console.ReadKey();
+		}
 	}
 }
