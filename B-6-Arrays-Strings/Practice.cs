@@ -286,5 +286,29 @@ namespace Base.Lesson_6
 			}
 			Console.ReadKey();
 		}
+
+		static public void B6_P5_6_CutString()
+		{
+			//=========================================================
+			Console.WriteLine("");
+			Console.WriteLine("====================================");
+			Console.WriteLine("B6_P5_6_CutString");
+			Console.WriteLine("Программа для обрезки введенной строки");
+			Console.WriteLine("====================================");
+			Console.WriteLine("");
+			//=========================================================
+			Console.Write("Введите предложение >> ");
+			string inputMessage = Console.ReadLine();
+			if(inputMessage.Length > 13)
+			{
+				string outputMessage = inputMessage.Substring(0, 13).Insert(13, "...");
+				Console.WriteLine(outputMessage);
+			}
+			else
+			{
+				Console.WriteLine(inputMessage);
+			}
+			Console.ReadKey();
+		}
 	}
 }
