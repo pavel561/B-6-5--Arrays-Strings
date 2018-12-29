@@ -11,7 +11,8 @@ namespace Base.Lesson_6
         static void Main(string[] args)
         {
 
-			Practice.B6_P1_6_1DReadConsoleMassive();
+			//Practice.B6_P1_6_1DReadConsoleMassive();
+			Practice.B6_P2_6_3DMassiveMaxInRow();
 
 			int[] massivSix = new[] { 1, 2, 3, 4, 5, 6 };
 			for (int i = 0; i < massivSix.Length; i++)

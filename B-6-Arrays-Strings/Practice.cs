@@ -15,6 +15,7 @@ namespace Base.Lesson_6
 			Console.WriteLine("====================================");
 			Console.WriteLine("B6_P1_6_1DReadConsoleMassive");
 			Console.WriteLine("Программа выводит на экран элементы одномерного массива");
+			Console.WriteLine("====================================");
 			Console.WriteLine("");
 			//=========================================================
 			const int ARRAY_SIZE = 6;
@@ -30,6 +31,59 @@ namespace Base.Lesson_6
 			{
 				Console.Write($"{array[i],3}");
 			}		
+			Console.ReadLine();
+		}
+
+		static public void B6_P2_6_3DMassiveMaxInRow()
+		{
+			//=========================================================
+			Console.WriteLine("");
+			Console.WriteLine("====================================");
+			Console.WriteLine("B6_P2_6_3DMassiveMaxInRow");
+			Console.WriteLine("Программа выводит на экран элементы двухмерного массива");
+			Console.WriteLine("а также максимальные значения элементов в каждой строке");
+			Console.WriteLine("====================================");
+			Console.WriteLine("");
+			//=========================================================
+			const int X_SIZE = 3;
+			const int Y_SIZE = 3;
+			//int[,] table = new int[X_SIZE, Y_SIZE] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };	//Заполняем таблицу при объявлении
+			int[,] table = new int[X_SIZE, Y_SIZE];
+			Random rnd = new Random();
+			// Заполняем таблицу через Random
+			for( int i = 0; i < X_SIZE; i++ )
+			{
+				for(int j = 0; j < Y_SIZE; j++)
+				{
+					table[i, j] = rnd.Next(1, 100);
+				}
+			}
+			Console.WriteLine("Двухмерный массив ");
+			//Выводим таблицу
+			for (int i = 0; i < X_SIZE; i++)
+			{
+				for (int j = 0; j < Y_SIZE; j++)
+				{
+					Console.Write($"{table[i, j],5}");
+				}
+				Console.WriteLine();
+			}
+
+			Console.WriteLine();
+			//Ищем максимальное значение в строках
+			for (int i = 0; i < X_SIZE; i++)
+			{
+				int maxValue = 0;
+				for (int j = 0; j < Y_SIZE; j++)
+				{
+					if(maxValue < table[i,j])
+					{
+						maxValue = table[i, j];
+					}
+				}
+				Console.Write($"Максимальное значение в {i+1}-й строке - {maxValue}");
+				Console.WriteLine();
+			}
 			Console.ReadLine();
 		}
 	}
