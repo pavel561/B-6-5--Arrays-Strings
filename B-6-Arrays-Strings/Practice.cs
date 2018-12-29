@@ -81,8 +81,56 @@ namespace Base.Lesson_6
 						maxValue = table[i, j];
 					}
 				}
-				Console.Write($"Максимальное значение в {i+1}-й строке - {maxValue}");
-				Console.WriteLine();
+				Console.WriteLine($"Максимальное значение в {i+1}-й строке - {maxValue}");
+			}
+			Console.ReadLine();
+		}
+
+		static public void B6_P3_6_1DMasiveSort()
+		{
+			//=========================================================
+			Console.WriteLine("");
+			Console.WriteLine("====================================");
+			Console.WriteLine("B6_P3_6_1DMasiveSort");
+			Console.WriteLine("Программа сортирует элементы одномерного массива");
+			Console.WriteLine("Массив заполняется с помощью класса Random");
+			Console.WriteLine("====================================");
+			Console.WriteLine("");
+			//=========================================================
+
+			const int ARRAY_SIZE = 10;
+			int[] array = new int[ARRAY_SIZE];
+			Random rnd = new Random();
+			//Инициальзируем элементы массива
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = rnd.Next(1, 100);
+			}
+			//Выводим элементы массива в консоль
+			Console.WriteLine($" Исходный массив ");
+			for (int i = 0; i < array.Length; i++)
+			{
+				Console.Write($"{array[i], 3}");
+			}
+			Console.WriteLine("");
+			//Сортируем массив методом пузырька
+			for (int iteration = 1; iteration < array.Length; iteration++)
+			{
+				for (int i = 0; i <= array.Length-1-iteration; i++)
+				{
+					if(array[i]>array[i+1])
+					{
+						int temp = array[i];
+						array[i] = array[i + 1];
+						array[i + 1] = temp;
+					}
+				}
+			}
+			//Выводим в консоль отсортированный массив
+			Console.WriteLine($" Отсортированный массив ");
+			for (int i = 0; i < array.Length; i++)
+			{
+				Console.Write($"{array[i],3}");
 			}
 			Console.ReadLine();
 		}
