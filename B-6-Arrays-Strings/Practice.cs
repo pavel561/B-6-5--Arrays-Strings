@@ -310,5 +310,32 @@ namespace Base.Lesson_6
 			}
 			Console.ReadKey();
 		}
+
+		static public void B6_P6_6_ReplaceInPoem()
+		{
+			//=========================================================
+			Console.WriteLine("");
+			Console.WriteLine("====================================");
+			Console.WriteLine("B6_P5_6_CutString");
+			Console.WriteLine("Программа для разбиения строки на подстроки");
+			Console.WriteLine("====================================");
+			Console.WriteLine("");
+			//=========================================================
+			Console.WriteLine("Введите стихотворение, разделяя строки точкой с запятой");
+			Console.Write(" >> ");
+			string inputMessage = Console.ReadLine();			//Вводим стихотворение
+			string[] poemArray = inputMessage.Split(';');		//Разбиваем его на подстроки
+			for(int i = 0; i < poemArray.Length; i++)
+			{
+				poemArray[i] = poemArray[i].Replace('О', 'А');	//Заменяем буквы
+				poemArray[i] = poemArray[i].Replace("Л", "ЛЬ"); //Заменяем сочетания
+				poemArray[i] = poemArray[i].Replace("ТЬ", "Т"); //Заменяем сочетания
+			}
+			for (int i = 0; i < poemArray.Length; i++)
+			{
+				Console.WriteLine(poemArray[i]);                 //Выводим в консоль результат  построчно
+			}
+			Console.ReadKey();
+		}
 	}
 }

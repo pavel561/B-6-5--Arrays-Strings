@@ -15,7 +15,8 @@ namespace Base.Lesson_6
 			//Practice.B6_P2_6_3DMassiveMaxInRow();
 			//Practice.B6_P3_6_1DMasiveSort();
 			//Practice.B6_P4_6_Pyatnashki();
-			Practice.B6_P5_6_CutString();
+			//Practice.B6_P5_6_CutString();
+			Practice.B6_P6_6_ReplaceInPoem();
 
 			int[] massivSix = new[] { 1, 2, 3, 4, 5, 6 };
 			for (int i = 0; i < massivSix.Length; i++)
